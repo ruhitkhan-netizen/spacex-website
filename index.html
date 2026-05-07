@@ -70,7 +70,7 @@ transform:scale(1.05);
 
 .result{
 margin-top:20px;
-font-size:24px;
+font-size:26px;
 font-weight:bold;
 color:#facc15;
 }
@@ -83,8 +83,6 @@ color:#facc15;
 <div class="main-heading">
 Let's Waste Time Together
 </div>
-
-<!-- Currency Converter -->
 
 <div class="section">
 
@@ -118,8 +116,6 @@ Convert Currency
 <div class="result" id="currencyResult"></div>
 
 </div>
-
-<!-- IELTS Calculator -->
 
 <div class="section">
 
@@ -162,6 +158,12 @@ GBP:0.79,
 AUD:1.52
 };
 
+if(isNaN(amount)){
+document.getElementById("currencyResult").innerHTML =
+"Please enter amount";
+return;
+}
+
 let usdAmount = amount / rates[from];
 
 let converted = usdAmount * rates[to];
@@ -184,4 +186,31 @@ let writing =
 parseFloat(document.getElementById("writing").value);
 
 let speaking =
-parseFloat(document.getElementById("speaking").
+parseFloat(document.getElementById("speaking").value);
+
+if(
+isNaN(listening) ||
+isNaN(reading) ||
+isNaN(writing) ||
+isNaN(speaking)
+){
+document.getElementById("ieltsResult").innerHTML =
+"Please enter all scores";
+return;
+}
+
+let average =
+(listening + reading + writing + speaking) / 4;
+
+let overall =
+Math.round(average * 2) / 2;
+
+document.getElementById("ieltsResult").innerHTML =
+"Overall IELTS Band: " + overall;
+
+}
+
+</script>
+
+</body>
+</html>
